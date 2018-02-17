@@ -1,7 +1,68 @@
-<!DOCTYPE html>
-<html>
-<header><title>This is title</title></header>
-<body>
-Hello world
-</body>
-</html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112269949-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-112269949-1');
+    </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-8679833262125657",
+        enable_page_level_ads: true
+      });
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="description" content="werp.io is a multiplayer space fighting game. Pilot your ship and shoot down other players to rise up the leaderboard!">
+    <meta name="keywords" content="werpio, werp, io, space, fighting, ship, warp, multiplayer, game, io game, html5">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>noSNOOZ</title>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js"></script>
+      <style type="text/css">
+          body {
+            margin: 0; z-index: 1; background-color: #0f0f0f;
+          }
+          div {
+            display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1;
+            display: none; white-space: nowrap;
+          }
+          input {
+            width: 512px; height: 40px; font-size: 32px;
+            padding-left: 2%; padding-right: 2%; z-index: 1; display: none;
+          }
+          text {
+            font-size: 20px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, 125%);
+          }
+          .text_notes {
+            font-size: 16px; position: absolute; top: 115%; left: 50%; transform: translate(-50%, 125%);
+          }
+          .menu::placeholder {
+            color: #00ff78;
+            opacity: 0.4;
+          }
+          .dead::placeholder {
+            color: #ff1e1e;
+            opacity: 0.4;
+          }
+      </style>
+  </head>
+
+  <body id = "game_canvas">
+
+    <script type="text/javascript" src="game_obf.js"></script>
+
+    <div id="name_input_div">
+      <input id="name_input" class="menu" placeholder="Player name...">
+      <text id="input_prompt">(Connecting...)</text>
+      <text class="text_notes" id="notes">[Hold W]-warp ### [SPACE]-booster ### [CLICK]-shoot</text>
+    </div>
+
+  </body>
+
+nb</html>
