@@ -1,68 +1,92 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112269949-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<!DOCTYPE html>
+<html>
+<title>noSNOOZ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-      gtag('config', 'UA-112269949-1');
-    </script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-8679833262125657",
-        enable_page_level_ads: true
-      });
-    </script>
-    <meta charset="UTF-8" />
-    <meta name="description" content="werp.io is a multiplayer space fighting game. Pilot your ship and shoot down other players to rise up the leaderboard!">
-    <meta name="keywords" content="werpio, werp, io, space, fighting, ship, warp, multiplayer, game, io game, html5">
-    <meta name="robots" content="index, follow">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>noSNOOZ</title>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js"></script>
-      <style type="text/css">
-          body {
-            margin: 0; z-index: 1; background-color: #0f0f0f;
-          }
-          div {
-            display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1;
-            display: none; white-space: nowrap;
-          }
-          input {
-            width: 512px; height: 40px; font-size: 32px;
-            padding-left: 2%; padding-right: 2%; z-index: 1; display: none;
-          }
-          text {
-            font-size: 20px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, 125%);
-          }
-          .text_notes {
-            font-size: 16px; position: absolute; top: 115%; left: 50%; transform: translate(-50%, 125%);
-          }
-          .menu::placeholder {
-            color: #00ff78;
-            opacity: 0.4;
-          }
-          .dead::placeholder {
-            color: #ff1e1e;
-            opacity: 0.4;
-          }
-      </style>
-  </head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Verdana">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <body id = "game_canvas">
+<style>
+body {font-family: "Verdana", sans-serif}
+body {background-color: #8F8F8F;}
 
-    <script type="text/javascript" src="game_obf.js"></script>
+.mySlides {display: none}
+</style>
+<body>
 
-    <div id="name_input_div">
-      <input id="name_input" class="menu" placeholder="Player name...">
-      <text id="input_prompt">(Connecting...)</text>
-      <text class="text_notes" id="notes">[Hold W]-warp ### [SPACE]-booster ### [CLICK]-shoot</text>
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ABOUT</a>
+    <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">OUR ALGORITHM</a>
+    <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">RECENT POSTS</a>
+    <div class="w3-dropdown-hover w3-padding-large w3-hide-small">MORE</a>
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="#" class="w3-bar-item w3-button">REDDIT</a>
+        <a href="#" class="w3-bar-item w3-button">GITHUB</a>
+        <a href="#" class="w3-bar-item w3-button">CONTACT</a>
+      </div>
     </div>
+  </div>
+</div>
 
-  </body>
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-bar-block #5F99CF w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#band" class="w3-bar-item w3-button">ABOUT</a>
+  <a href="#tour" class="w3-bar-item w3-button">OUR ALGORITHM</a>
+  <a href="#contact" class="w3-bar-item w3-button">RECENT POSTS</a>
+  <a href="#" class="w3-bar-item w3-button">REDDIT</a>
+  <a href="#" class="w3-bar-item w3-button">GITHUB</a>
+  <a href="#" class="w3-bar-item w3-button">CONTACT</a>
+</div>
 
-nb</html>
+<!-- Page content -->
+<div class="w3-content" style="max-width:800px;margin-top:46px">
+
+  <!-- Heading -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:500px" id="band">
+    <h1 class="w3-wide">noSNOOZ</h1>
+    <p class="w3-opacity"><i>Real-time updates for Reddit</i></p>
+  </div>
+
+  <!-- Sign up -->
+  <div class="w3-container w3-content" style="max-width:500px" id="contact">
+    <h2 class="w3-wide w3-center">SIGN UP</h2>
+    <p class="w3-opacity w3-center"><i>Enter your phone number and select your carrier and to receive real-time updates on trending reddit posts.</i></p>
+        <form action="/action_page.php" target="_blank">
+          <center><input class="w3-input w3-border" style="max-width:130px" type="tel" placeholder="555-555-5555" required name="Phone Number" width="15"></center>
+          <br/>
+          <center><select name="carrier">
+            <option value="SPRINT">Sprint</option>
+            <option value="ANT">ATT</option>
+            <option value="TMOBILE">T-mobile</option>
+            <option value="VERIZON">Verizon</option>
+          </select></center>
+          <br/>
+          <center><button class="w3-button w3-deep-orange w3-section w3-center" type="submit">SUBMIT</button></center>
+        </form>
+      <div>
+    </div>
+  </div>
+  
+<!-- End Page Content -->
+</div>
+
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>
