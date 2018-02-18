@@ -1,9 +1,11 @@
 # utilities file
 import praw
+import re
 import sys
 import time
 
 DEBUG = True
+
 
 def dout(message):
     if DEBUG:
@@ -13,6 +15,10 @@ def dout(message):
 def err(error_code, error_message):
     print(f"[ERROR] {message}")
     sys.exit(error_code)
+
+
+def strip_non_ascii(string):
+    return re.sub(r'[^\x00-\x7F]', ' ', string)
 
 
 # seconds since epoc
@@ -25,7 +31,7 @@ def post_age_sec(post):
 
 
 def post_age_min(post):
-    return post_age_sec(post) / 60
+    return int(post_age_sec(post) / 60)
 
 
 # prints info about each post in the collection to stdout

@@ -17,10 +17,11 @@ MAX_MESSAGE_LENGTH = 155
 
 server = smtplib.SMTP("smtp.gmail.com", 587)
 server.starttls()
-server.login(EMAIL, sys.argv[1]) # credentials as argument
+server.login(EMAIL, "hophacks18") # credentials as argument
 
 
 def send_text(number, carrier, message):
+    message = util.strip_non_ascii(message)
     server.sendmail(EMAIL, number + carrier, message)
     print("Sending message...")
 
@@ -49,22 +50,23 @@ def sanitize_number(phone_number):
 
 def send_notif_excl_dup(posts):
     for p in posts:
+        notification = post_to_message(p)
         if not database.post_db_contains(p.id):
             subscriber_data = handle_subscribers.get_subscriber_data()
             for entry in subscriber_data:
-                data = entry.split[":"]
+                data = entry.split(":")
                 p_num = data[0]
-                p_carrier = data[1]
-                send_text(p_num, p_carrier, post_to_message(p))
+                p_carrier = get_carrier(data[1])
+                send_text(p_num, p_carrier, notification)
 
 
 def post_to_message(post):
     msg = []
     msg.append(post.url)
     msg.append("\n")
-    msg.append(post.score)
+    msg.append(str(post.score))
     msg.append(" points, ")
-    msg.append(util.post_age_min(post))
+    msg.append(str(util.post_age_min(post)))
     msg.append(" min ago")
     msg.append("\n")
     msg.append(post.title)

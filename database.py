@@ -40,4 +40,6 @@ if __name__ == "__main__":
 
         # Query for predictions
         preds = analytics.public_get_predictions()
+        contact.send_notif_excl_dup(preds)
         write_to_file(preds)
+        running = False
