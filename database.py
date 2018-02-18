@@ -33,7 +33,7 @@ def post_to_text(post):
 
 if __name__ == "__main__":
     while True:
-        time.sleep(2)
+        time.sleep(120)
 
         # Query for predictions
         posts = analytics.public_get_predictions()

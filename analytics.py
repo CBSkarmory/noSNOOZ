@@ -10,12 +10,6 @@ sub = reddit.subreddit("news+worldnews")
 
 DEBUG = True
 
-
-def dout(message):
-    if DEBUG:
-        print(f"[DEBUG] {message}")
-
-
 def current_sec_time():
     return int(round(time.time()))        
 
