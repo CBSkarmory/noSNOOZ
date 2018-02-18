@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-import praw, pdb, re, os, sys, pandas as pd, numpy as np, time
+import praw
+import pandas as pd
+import numpy as np
+import time
 
 reddit = praw.Reddit("Gatherer")
 
