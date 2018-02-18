@@ -35,8 +35,13 @@ def post_to_text(post):
 
 if __name__ == "__main__":
     running = True
+    elapsed_min = 0
     while running:
         time.sleep(120)
+        elapsed_min += 2
+        if elapsed_min > 90:
+            os.remove(POST_DATABASE)
+            elapsed_min = 0
 
         # Query for predictions
         preds = analytics.public_get_predictions()

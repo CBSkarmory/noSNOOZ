@@ -3,3 +3,4 @@
 *.txt
 .idea
 *.ini
+node_modules/*
