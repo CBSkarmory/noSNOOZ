@@ -66,7 +66,7 @@ def send_notif_excl_dup(posts):
 
 def post_to_message(post):
     msg = []
-    msg.append(post.shortlink)
+    msg.append(str(post.shortlink))
     msg.append("\n")
     msg.append(str(post.score))
     msg.append(" pts, ")
