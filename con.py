@@ -56,10 +56,6 @@ while(True):
     if carrier == "FAIL":
         continue
 
-    subscribers_file = open("subscribers.txt", "a+")
-    subscribers_file.write(phone_number + " " + carrier)
-    subscribers_file.close()
-
     # Receive and sanitize message
     msg_input = input("Enter message\n")
     msg_len = MAX_MESSAGE_LENGTH - len(EMAIL) - len(phone_number) - len(carrier)
