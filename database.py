@@ -1,10 +1,12 @@
+#!/usr/bin/env python3
 import time
-import scr
+import analytics
 import os
 
 FILE_NAME = "db.txt"
 
-def fileContains(post_id):
+
+def file_contains(post_id):
     if not os.path.isfile(FILE_NAME):
         return False
 
@@ -14,23 +16,26 @@ def fileContains(post_id):
             return True
     return False
 
-def writeToFile(posts):
+
+def write_to_file(posts):
     print("Writing %d posts to file" % len(posts))
     for post in posts:
-        if not fileContains(post.id):
+        if not file_contains(post.id):
             db_file = open(FILE_NAME, "a+")
-            db_file.write(postToText(post))
+            db_file.write(post_to_text(post))
             db_file.close()
 
 
-def postToText(post):
+def post_to_text(post):
     return "id: %s, title: %s, url: %s, score: %d\n" % \
            (post.id, post.title, post.url, post.score)
 
-while (True):
-    time.sleep(2)
 
-    # Query for predictions
-    posts = scr.public_get_predictions()
+if __name__ == "__main__":
+    while True:
+        time.sleep(2)
 
-    writeToFile(posts)
+        # Query for predictions
+        posts = analytics.public_get_predictions()
+
+        write_to_file(posts)

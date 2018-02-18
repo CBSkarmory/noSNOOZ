@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-import praw, pdb, re, os, sys, pandas as pd, numpy as np, time
+import praw
+import pandas as pd
+import numpy as np
+import time
 
 reddit = praw.Reddit("Gatherer")
 
@@ -17,6 +20,7 @@ def current_sec_time():
     return int(round(time.time()))        
 
 
+# prints info about each post in the collection to stdout
 def print_col(collection):
     for post in collection:
         print(f"Title: {post.title}")
@@ -40,6 +44,7 @@ def get_rising_n(n):
     return sub.rising(limit=n)
 
 
+# gets the maximum score from a group of comments
 def max_score(comments):
     max_val = 0
     for com in comments.list():
@@ -48,7 +53,7 @@ def max_score(comments):
         max_val = max(max_val, com.score)
     return max_val
 
-
+# gives back posts as dataframe holding useful stats
 def posts_as_df(posts):
     df = pd.DataFrame({
         'post': [post for post in posts]
@@ -63,6 +68,9 @@ def posts_as_df(posts):
     return df
 
 
+# gets predictions for posts that will get front page
+# current algorithm checks for posts in the intersection set with 1st or 2nd derivative 2 sdev above mean for intersect
+# intersection set is the intersection for top n rising and top(hour)
 def public_get_predictions():
     n = 2.0
     df = posts_as_df(set(get_rising_n(8)) & set(get_top_hour_n(8)))
@@ -71,6 +79,7 @@ def public_get_predictions():
     return df_filtered['post']
 
 
+# prints interesting info
 def print_hot_vs_intersection():
     print("hot")
     print(posts_as_df(get_hot_n(5)))

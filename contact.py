@@ -15,14 +15,16 @@ MAX_MESSAGE_LENGTH = 155
 
 server = smtplib.SMTP("smtp.gmail.com", 587)
 server.starttls()
-server.login(EMAIL, sys.argv[1])
+server.login(EMAIL, sys.argv[1]) # credentials as argument
+
 
 def send_text(number, carrier, message):
-    server.sendmail(EMAIL, number + carrier, message);
+    server.sendmail(EMAIL, number + carrier, message)
     print("Sending message...")
 
+
 def get_carrier(ans):
-    ans.upper();
+    ans.upper()
     if ans == "TMOBILE":
         return TMOBILE
     elif ans == "SPRINT":
@@ -34,6 +36,7 @@ def get_carrier(ans):
     else:
         return "FAIL"
 
+
 def sanitize_number(phone_number):
     phone_number = phone_number.replace("-", "")
     if len(phone_number) == 10 and phone_number.isdigit():
@@ -41,7 +44,9 @@ def sanitize_number(phone_number):
     else:
         return False
 
-while(True):
+
+#TODO disable all of below
+while True:
     time.sleep(1)
 
     # Receive and sanitize phone number
