@@ -2,28 +2,13 @@
 import praw
 import pandas as pd
 import numpy as np
-import time
+import util
 
 reddit = praw.Reddit("Gatherer")
 
 sub = reddit.subreddit("news+worldnews")
 
 DEBUG = True
-
-def current_sec_time():
-    return int(round(time.time()))        
-
-
-# prints info about each post in the collection to stdout
-def print_col(collection):
-    for post in collection:
-        print(f"Title: {post.title}")
-        print(f"Text: {post.selftext}")
-        print(f"Link: {post.url}")
-        print(f"Score: {post.score}")
-        print(f"top-lv com: {len(post.comments)}")
-        print(f"seconds elapsed: {(current_sec_time()) - post.created_utc}")
-        print("\n")
 
 
 def get_top_hour_n(n):
@@ -54,7 +39,7 @@ def posts_as_df(posts):
     })
     df['score'] = df.post.apply(lambda post: post.score)
     df['top_lv_c'] = df.post.apply(lambda post: len(post.comments))
-    df['seconds_old'] = df.post.apply(lambda post: int(current_sec_time() - post.created_utc))
+    df['seconds_old'] = df.post.apply(util.post_age_sec)
     df['max_c_score'] = df.post.apply(lambda post: max_score(post.comments))
     # these are times 1000
     df['dp_dt'] = (df.score * 1000.0 * 60.0 / df.seconds_old).apply(int)
@@ -65,7 +50,7 @@ def posts_as_df(posts):
 # gets predictions for posts that will get front page
 # current algorithm checks for posts in the intersection set with 1st or 2nd derivative 2 sdev above mean for intersect
 # intersection set is the intersection for top n rising and top(hour)
-def public_get_predictions():
+def public_get_predictions(): #TODO modify algo to check for min time
     n = 2.0
     df = posts_as_df(set(get_rising_n(8)) & set(get_top_hour_n(8)))
     df_filtered = df[(( (df.dp_dt - np.mean(df.dp_dt)) > ( n * np.std(df.dp_dt) )) |

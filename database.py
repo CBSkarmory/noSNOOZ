@@ -2,15 +2,17 @@
 import time
 import analytics
 import os
+import util
+import contact
 
-FILE_NAME = "db.txt"
+POST_DATABASE = "db.txt"
 
 
-def file_contains(post_id):
-    if not os.path.isfile(FILE_NAME):
+def post_db_contains(post_id):
+    if not os.path.isfile(POST_DATABASE):
         return False
 
-    lines = open(FILE_NAME).readlines()
+    lines = open(POST_DATABASE).readlines()
     for line in lines:
         if line.startswith("id: " + str(post_id)):
             return True
@@ -18,10 +20,10 @@ def file_contains(post_id):
 
 
 def write_to_file(posts):
-    print("Writing %d posts to file" % len(posts))
+    util.dout("Writing %d posts to post database" % len(posts))
     for post in posts:
-        if not file_contains(post.id):
-            db_file = open(FILE_NAME, "a+")
+        if not post_db_contains(post.id):
+            db_file = open(POST_DATABASE, "a+")
             db_file.write(post_to_text(post))
             db_file.close()
 
@@ -32,10 +34,10 @@ def post_to_text(post):
 
 
 if __name__ == "__main__":
-    while True:
-        time.sleep(120)
+    running = True
+    while running:
+        time.sleep(2)
 
         # Query for predictions
-        posts = analytics.public_get_predictions()
-
-        write_to_file(posts)
+        preds = analytics.public_get_predictions()
+        write_to_file(preds)
