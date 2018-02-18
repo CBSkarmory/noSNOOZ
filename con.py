@@ -11,17 +11,15 @@ SPRINT = "@pm.sprint.com"
 VERIZON = "@vtext.com"
 ANT = "@mms.att.net"
 
+MAX_MESSAGE_LENGTH = 155
+
 server = smtplib.SMTP("smtp.gmail.com", 587)
 server.starttls()
 server.login(EMAIL, sys.argv[1])
 
 def send_text(number, carrier, message):
-    msg_len = 155 - len(EMAIL + number + carrier)
-    message = message[0:msg_len]
-    if len(number) == 10 and carrier != "FAIL":
-        server.sendmail(EMAIL, number + carrier, message);
-        print("Sending message...")
-
+    server.sendmail(EMAIL, number + carrier, message);
+    print("Sending message...")
 
 def get_carrier(ans):
     ans.upper();
@@ -36,11 +34,32 @@ def get_carrier(ans):
     else:
         return "FAIL"
 
+def sanitize_number(phone_number):
+    phone_number = phone_number.replace("-", "")
+    if len(phone_number) == 10 and phone_number.isdigit():
+        return phone_number
+    else:
+        return False
+
 while(True):
-    num = input("Enter your phone number\n")
-    car = input("Enter your carrier\n")
-    msg = input("What message?\n")
-    carrier = get_carrier(car)
-    send_text(num, carrier, msg)
     time.sleep(1)
 
+    # Receive and sanitize phone number
+    phone_input = str(input("Enter your phone number\n"))
+    phone_number = sanitize_number(phone_input)
+    if not phone_number:
+        continue
+
+    # Receive and sanitize carrier
+    carrier_input = input("Enter your carrier\n")
+    carrier = get_carrier(carrier_input)
+    if carrier == "FAIL":
+        continue
+
+    # Receive and sanitize message
+    msg_input = input("Enter message\n")
+    msg_len = MAX_MESSAGE_LENGTH - len(EMAIL) - len(phone_number) - len(carrier)
+    message = msg_input[0:msg_len]
+
+    # Send message
+    send_text(phone_number, carrier, message)
