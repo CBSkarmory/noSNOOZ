@@ -36,10 +36,9 @@ def post_to_text(post):
 if __name__ == "__main__":
     running = True
     while running:
-        time.sleep(2)
+        time.sleep(120)
 
         # Query for predictions
         preds = analytics.public_get_predictions()
         contact.send_notif_excl_dup(preds)
         write_to_file(preds)
-        running = False

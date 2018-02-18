@@ -22,7 +22,7 @@ server.login(EMAIL, "hophacks18") # credentials as argument
 
 def send_text(number, carrier, message):
     message = util.strip_non_ascii(message)
-    server.sendmail(EMAIL, number + carrier, message)
+    server.sendmail(SENDER, number + carrier, message)
     print("Sending message...")
 
 
@@ -58,44 +58,18 @@ def send_notif_excl_dup(posts):
                 p_num = data[0]
                 p_carrier = get_carrier(data[1])
                 send_text(p_num, p_carrier, notification)
+                util.dout("sent 1 txt")
 
 
 def post_to_message(post):
     msg = []
-    msg.append(post.url)
+    msg.append(post.shortlink)
     msg.append("\n")
     msg.append(str(post.score))
-    msg.append(" points, ")
+    msg.append(" pts, ")
     msg.append(str(util.post_age_min(post)))
     msg.append(" min ago")
     msg.append("\n")
     msg.append(post.title)
     return "".join(msg)
 
-#TODO disable all of below
-#while True:
-#    time.sleep(1)
-
-#    # Receive and sanitize phone number
-#    phone_input = str(input("Enter your phone number\n"))
-#    phone_number = sanitize_number(phone_input)
-#    if not phone_number:
-#        continue
-
-#    # Receive and sanitize carrier
-#    carrier_input = input("Enter your carrier\n")
-#    carrier = get_carrier(carrier_input)
-#    if carrier == "FAIL":
-#        continue
-
-#    subscribers_file = open("subscribers.txt", "a+")
-#    subscribers_file.write(phone_number + " " + carrier)
-#    subscribers_file.close()
-
-#    # Receive and sanitize message
-#    msg_input = input("Enter message\n")
-#    msg_len = MAX_MESSAGE_LENGTH - len(EMAIL) - len(phone_number) - len(carrier)
-#    message = msg_input[0:msg_len]
-
-#    # Send message
-#    send_text(phone_number, carrier, message)
