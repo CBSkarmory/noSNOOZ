@@ -13,7 +13,7 @@ def dout(message):
 
 
 def err(error_code, error_message):
-    print(f"[ERROR] {message}")
+    print(f"[ERROR] {error_message}")
     sys.exit(error_code)
 
 

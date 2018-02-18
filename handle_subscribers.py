@@ -8,7 +8,7 @@ SUBSCRIBER_DB = "subscribers.txt"
 
 
 def add_subscriber(phone_number, carrier, subs):
-    util.dout(f"adding subscriber XXX-XXX-{phone_number % 1000} to subscriber database")
+    util.dout(f"adding subscriber XXX-XXX-{phone_number % 10000} to subscriber database")
     file = open(SUBSCRIBER_DB, "w+")
     file.write(f"{phone_number}:{carrier}:{subs}\n")
     file.close()
