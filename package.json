@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/CBSkarmory/noSNOOZ#readme",
   "dependencies": {
+    "child_process": "^1.0.2",
     "express": "^4.16.2",
     "socket.io": "^2.0.4"
   }

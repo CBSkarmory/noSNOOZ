@@ -41,3 +41,5 @@ if __name__ == "__main__":
         data = line.split(":")
 
         add_subscriber(int(data[0]), data[1], data[2])
+    # clear the PIPE file
+    open(PIPE, "w").close()
