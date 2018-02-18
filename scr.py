@@ -66,8 +66,8 @@ def posts_as_df(posts):
 def public_get_predictions():
     n = 2.0
     df = posts_as_df(set(get_rising_n(8)) & set(get_top_hour_n(8)))
-    df_filtered = df[(( abs(df.dp_dt - np.mean(df.dp_dt)) > ( n * np.std(df.dp_dt) )) |
-               ( abs(df.dp_dt - np.mean(df.d2p_dt2)) > ( n * np.std(df.d2p_dt2) )))]
+    df_filtered = df[(( (df.dp_dt - np.mean(df.dp_dt)) > ( n * np.std(df.dp_dt) )) |
+               ( (df.dp_dt - np.mean(df.d2p_dt2)) > ( n * np.std(df.d2p_dt2) )))]
     return df_filtered['post']
 
 
