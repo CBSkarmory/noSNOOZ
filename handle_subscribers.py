@@ -21,7 +21,10 @@ def get_subscriber_data():
     lines = open(SUBSCRIBER_DB).readlines()
     data = []
     for l in lines:
+        if "" == l or "\n" == l:
+            continue
         fields = l.split(":")
+        util.dout(fields)
         data.append(f"{fields[0]}:{fields[1]}")
     return data
 
