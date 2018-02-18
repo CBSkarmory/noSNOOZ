@@ -18,8 +18,10 @@ def add_subscriber(phone_number, carrier, subs):
 # string formatting:
 # 5555555555:ANT
 def get_subscriber_data():
-    lines = open(SUBSCRIBER_DB).readlines()
     data = []
+    if not os.path.isfile(SUBSCRIBER_DB):
+        return data
+    lines = open(SUBSCRIBER_DB).readlines()
     for l in lines:
         if "" == l or "\n" == l:
             continue
