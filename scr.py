@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import praw, pdb, re, os, sys, pandas as pd, time
+import praw, pdb, re, os, sys, pandas as pd, numpy as np, time
 
 reddit = praw.Reddit("Gatherer")
 
@@ -64,14 +64,19 @@ def posts_as_df(posts):
 
 
 def public_get_predictions():
-    # TODO implement me
-    return [list(get_rising_n(1))[0]]
+    n = 2.0
+    df = posts_as_df(set(get_rising_n(8)) & set(get_top_hour_n(8)))
+    df_filtered = df[(( abs(df.dp_dt - np.mean(df.dp_dt)) > ( n * np.std(df.dp_dt) )) |
+               ( abs(df.dp_dt - np.mean(df.d2p_dt2)) > ( n * np.std(df.d2p_dt2) )))]
+    return df_filtered['post']
 
 
-if __name__ == "__main__":
-    n= 7
-    #print_col(set(get_rising_n(n)) & set(get_top_hour_n(n)))
+def print_hot_vs_intersection():
     print("hot")
     print(posts_as_df(get_hot_n(5)))
     print("intersect")
     print(posts_as_df(set(get_rising_n(8)) & set(get_top_hour_n(8))))
+
+if __name__ == "__main__":
+    # do whatever, don't call this as main
+    print_hot_vs_intersection()
