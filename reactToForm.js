@@ -18,6 +18,9 @@ function onSubmit() {
       };
 
       connection.emit("data", data);
+      alert("Sucess!");
+  } else {
+      alert("Failed. Try again with valid 10 digit number");
   }
 }
 
