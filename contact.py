@@ -20,7 +20,7 @@ MAX_MESSAGE_LENGTH = 155
 
 server = smtplib.SMTP("smtp.gmail.com", 587)
 server.starttls()
-server.login(EMAIL, PASSW) # credentials as argument
+server.login(EMAIL, PASSW)
 
 
 def send_text(number, carrier, message):
