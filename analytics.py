@@ -49,11 +49,12 @@ def posts_as_df(posts):
 # gets predictions for posts that will get front page
 # current algorithm checks for posts in the intersection set with 1st or 2nd derivative 2 sdev above mean for intersect
 # intersection set is the intersection for top n rising and top(hour)
-def public_get_predictions(): #TODO modify algo to check for min time
+def public_get_predictions():
     n = 2.0
     df = posts_as_df(set(get_rising_n(8)) & set(get_top_hour_n(8)))
     df_filtered = df[(( (df.dp_dt - np.mean(df.dp_dt)) > ( n * np.std(df.dp_dt) )) |
                ( (df.dp_dt - np.mean(df.d2p_dt2)) > ( n * np.std(df.d2p_dt2) )))]
+    df_filtered = df_filtered[( df.seconds_old > 120 )]
     return df_filtered['post']
 
 

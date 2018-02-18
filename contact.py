@@ -7,17 +7,20 @@ import handle_subscribers
 EMAIL = "nosnoozhophacks18@gmail.com"
 SENDER = "noSNOOZ"
 SMP_MSG = "Hophacks 2018"
+PASSW = lines = open("login.ini").readlines()[0]
+
 
 TMOBILE = "@tmomail.net"
 SPRINT = "@pm.sprint.com"
 VERIZON = "@vtext.com"
 ANT = "@mms.att.net"
 
+
 MAX_MESSAGE_LENGTH = 155
 
 server = smtplib.SMTP("smtp.gmail.com", 587)
 server.starttls()
-server.login(EMAIL, "hophacks18") # credentials as argument
+server.login(EMAIL, PASSW) # credentials as argument
 
 
 def send_text(number, carrier, message):
