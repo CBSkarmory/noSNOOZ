@@ -4,8 +4,9 @@
     <title>noSNOOZ</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-    <script type="text/javascript" src="./script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"te></script>
+    <script type="text/javascript" src="./reactToForm.js"></script>
+    
   </head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Verdana">
@@ -61,18 +62,18 @@ body {background-color: #8F8F8F;}
   <div class="w3-container w3-content" style="max-width:500px" id="contact">
     <h2 class="w3-wide w3-center">SIGN UP</h2>
     <p class="w3-opacity w3-center"><i>Enter your phone number and select your carrier and to receive real-time updates on trending reddit posts.</i></p>
-        <form action="/action_page.php" target="_blank">
-          <center><input class="w3-input w3-border" style="max-width:130px" type="tel" placeholder="555-555-5555" required name="Phone Number" width="15"></center>
+        
+          <center><input id="submit_box" class="w3-input w3-border" style="max-width:130px" type="tel" placeholder="555-555-5555" required name="Phone Number" width="15"></center>
           <br/>
-          <center><select name="carrier">
+          <center><select id="carrier_menu" name="carrier">
             <option value="SPRINT">Sprint</option>
             <option value="ANT">ATT</option>
             <option value="TMOBILE">T-mobile</option>
             <option value="VERIZON">Verizon</option>
           </select></center>
           <br/>
-          <center><button class="w3-button w3-deep-orange w3-section w3-center" type="submit">SUBMIT</button></center>
-        </form>
+          <center><button id="submit_but" class="w3-button w3-deep-orange w3-section w3-center" type="submit" onclick="onSubmit()">SUBMIT</button></center>
+       
       <div>
     </div>
   </div>
