@@ -16,10 +16,10 @@ body {font-family: "Verdana", sans-serif}
 <div class="w3-top">
   <div class="w3-bar w3-black w3-card">
     <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">ABOUT</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ABOUT</a>
     <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">OUR ALGORITHM</a>
     <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small">RECENT POSTS</a>
-    <div class="w3-dropdown-hover w3-hide-small">
+    <div class="w3-dropdown-hover w3-padding-large w3-hide-small">MORE</a>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
         <a href="#" class="w3-bar-item w3-button">REDDIT</a>
         <a href="#" class="w3-bar-item w3-button">GITHUB</a>
@@ -31,37 +31,38 @@ body {font-family: "Verdana", sans-serif}
 
 <!-- Navbar on small screens -->
 <div id="navDemo" class="w3-bar-block #5F99CF w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-  <a href="#band" class="w3-bar-item w3-button w3-padding-large">ABOUT</a>
-  <a href="#tour" class="w3-bar-item w3-button w3-padding-large">OUR ALGORITHM</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-padding-large">RECENT POSTS</a>
+  <a href="#band" class="w3-bar-item w3-button">ABOUT</a>
+  <a href="#tour" class="w3-bar-item w3-button">OUR ALGORITHM</a>
+  <a href="#contact" class="w3-bar-item w3-button">RECENT POSTS</a>
   <a href="#" class="w3-bar-item w3-button">REDDIT</a>
   <a href="#" class="w3-bar-item w3-button">GITHUB</a>
   <a href="#" class="w3-bar-item w3-button">CONTACT</a>
 </div>
 
 <!-- Page content -->
-<div class="w3-content" style="max-width:2000px;margin-top:46px">
+<div class="w3-content" style="max-width:800px;margin-top:46px">
 
   <!-- Heading -->
-  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:500px" id="band">
     <h2 class="w3-wide">noSNOOZ</h2>
     <p class="w3-opacity"><i>Real-time reddit updates</i></p>
   </div>
 
   <!-- Sign up -->
-  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+  <div class="w3-container w3-content w3-padding-64" style="max-width:500px" id="contact">
     <h2 class="w3-wide w3-center">SIGN UP</h2>
     <p class="w3-opacity w3-center"><i>Enter your phone number and select your carrier and to receive real-time updates on trending reddit posts.</i></p>
         <form action="/action_page.php" target="_blank">
-          <input class="w3-input w3-border" style="max-width:130px" type="tel" placeholder="999-999-9999" required name="Phone Number" width="15">
-          <select name="carrier">
-            <option value="Sprint">Sprint</option>
-            <option value="AT&T">ATT</option>
-            <option value="T-mobile">T-mobile</option>
-            <option value="Verizon">Verizon</option>
-          </select>
+          <center><input class="w3-input w3-border" style="max-width:130px" type="tel" placeholder="999-999-9999" required name="Phone Number" width="15"></center>
           <br/>
-          <button class="w3-button w3-deep-orange w3-section w3-center" type="submit">SUBMIT</button>
+          <center><select name="carrier">
+            <option value="SPRINT">Sprint</option>
+            <option value="ANT">ATT</option>
+            <option value="TMOBILE">T-mobile</option>
+            <option value="VERIZON">Verizon</option>
+          </select></center>
+          <br/>
+          <center><button class="w3-button w3-deep-orange w3-section w3-center" type="submit">SUBMIT</button></center>
         </form>
       <div>
     </div>
