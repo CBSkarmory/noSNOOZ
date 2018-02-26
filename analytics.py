@@ -5,20 +5,20 @@ import util
 
 reddit = praw.Reddit("Gatherer")
 
-sub = reddit.subreddit("news+worldnews+politics")
+DEFAULT = "news+worldnews+politics"
 
 DEBUG = True
 
 
-def get_top_hour_n(n):
+def get_top_hour_n(n, sub):
     return sub.top(time_filter='hour',limit=n)
 
 
-def get_hot_n(n):
+def get_hot_n(n, sub):
     return sub.hot(limit=n)
 
 
-def get_rising_n(n):
+def get_rising_n(n, sub):
     return sub.rising(limit=n)
 
 
@@ -49,9 +49,14 @@ def posts_as_df(posts):
 # gets predictions for posts that will get front page
 # current algorithm checks for posts in the intersection set with 1st or 2nd derivative 2 sdev above mean for intersect
 # intersection set is the intersection for top n rising and top(hour)
-def public_get_predictions():
+def public_get_predictions(sub_name):
     n = 2.5
-    df = posts_as_df(set(get_rising_n(8)) & set(get_top_hour_n(8)))
+    if not None == sub_name:
+        sub = reddit.subreddit(sub_name)
+    else:
+        sub = reddit.subreddit(DEFAULT)
+        
+    df = posts_as_df(set(get_rising_n(8, sub)) & set(get_top_hour_n(8, sub)))
     df_filtered = df[(( (df.dp_dt - np.mean(df.dp_dt)) > ( n * np.std(df.dp_dt) )) |
                ( (df.dp_dt - np.mean(df.d2p_dt2)) > ( n * np.std(df.d2p_dt2) )))]
     df_filtered = df_filtered[( df.seconds_old > 120 )]

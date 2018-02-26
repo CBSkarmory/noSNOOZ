@@ -44,6 +44,6 @@ if __name__ == "__main__":
             elapsed_min = 0
 
         # Query for predictions
-        preds = analytics.public_get_predictions()
+        preds = analytics.public_get_predictions(None)
         contact.send_notif_excl_dup(preds)
         write_to_file(preds)

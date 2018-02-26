@@ -43,4 +43,5 @@ def print_col(collection):
         print(f"Score: {post.score}")
         print(f"top-lv com: {len(post.comments)}")
         print(f"seconds elapsed: {(current_sec_time()) - post.created_utc}")
+        print(f"minutes elapsed: {int(((current_sec_time()) - post.created_utc) / 60)}")
         print("\n")
